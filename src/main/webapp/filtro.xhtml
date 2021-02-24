@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"> 
+
+	<ui:composition>
+			<b:container fluid="true">
+				<b:row>
+					<b:column col-md="6">
+						<h:outputText value="Número" />
+						<b:inputText value="#{todoBean.todoFiltro.id}" converter="longConverter" />
+						<h:outputText value="Titulo/Descrição" />
+						<b:inputText value="#{todoBean.todoFiltro.titulo}" />
+						<h:outputText value="Responsável" />
+						<b:selectOneMenu converter="pessoaConverter" value="#{todoBean.todoFiltro.responsavel}">
+							<f:selectItem itemLabel="Selecione"/>
+							<f:selectItems var="pessoa" value="#{todoBean.pessoas}" itemLabel="#{pessoa.nome}"/>
+						</b:selectOneMenu>
+						<h:outputText value="Situação" />
+						<b:selectOneMenu value="#{todoBean.todoFiltro.concluida}">
+							<f:selectItem itemValue="false" itemLabel="Em andamento"/>
+							<f:selectItem itemValue="true" itemLabel="Concluída"/>
+						</b:selectOneMenu>
+						<b:commandButton id="btn-filtro" action="#{todoBean.filtrar()}" look="primary" value="Buscar" />
+					</b:column>
+				</b:row>
+			</b:container>
+	</ui:composition>
+</html>

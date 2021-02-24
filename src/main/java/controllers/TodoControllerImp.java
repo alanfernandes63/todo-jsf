@@ -36,4 +36,8 @@ public class TodoControllerImp implements ITodoController {
 		return dao.listarTodosAFazer();
 	}
 
+	public List<Todo> filtrar(Todo todo) {
+		return dao.filtrar(todo);
+	}
+
 }

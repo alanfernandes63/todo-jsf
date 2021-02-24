@@ -7,6 +7,9 @@
 
 	<ui:composition>
 		<h:form>
+		<ui:insert name="filtro">
+			<ui:include src="/filtro.xhtml"></ui:include>
+		</ui:insert>
 			<b:dataTable value="#{todoBean.todos}" var="todo">
 				<b:dataTableColumn value="#{todo.id}">
 					<f:facet name="header">
@@ -38,7 +41,7 @@
 				</b:dataTableColumn>
 				<b:dataTableColumn>
 					<b:commandButton look="danger" action="#{todoBean.deletar(todo)}" value="Excluir" />
-					<b:commandButton look="success" action="#{todoBean.concluir(todo)}" value="Concluir" />
+					<b:commandButton rendered="#{!todo.concluida}" look="success" action="#{todoBean.concluir(todo)}" value="Concluir" />
 					<f:facet name="header">
 						<h:outputText value="Ações" />
 					</f:facet>

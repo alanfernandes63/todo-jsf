@@ -10,14 +10,20 @@
 			<b:container fluid="true">
 				<b:row>
 					<b:column col-md="6">
+						<h:outputText value="Titulo" />
 						<b:inputText value="#{todoBean.todo.titulo}" />
+						<h:outputText value="Descrição" />
 						<b:inputText value="#{todoBean.todo.descricao}" />
+						<h:outputText value="Responsável" />
 						<b:selectOneMenu converter="pessoaConverter" value="#{todoBean.todo.responsavel}">
 						<f:selectItems var="pessoa" value="#{todoBean.pessoas}" itemLabel="#{pessoa.nome}"/>
 						</b:selectOneMenu>
+						<h:outputText value="Prioridade" />
 						<b:selectOneMenu value="#{todoBean.todo.prioridade}">
-						<f:selectItems var="prioridade" value="#{todoBean.prioridades}" itemLabel="#{prioridade.label}"/>
+							<f:selectItem itemLabel="Selecione"/>
+							<f:selectItems var="prioridade" value="#{todoBean.prioridades}" itemLabel="#{prioridade.label}"/>
 						</b:selectOneMenu>
+						<h:outputText value="Deadline" />
 						<b:dateTimePicker  value="#{todoBean.todo.deadline}" format="DD-MM-YYYY"/>
 						<b:commandButton action="#{todoBean.salvar()}" look="primary" value="salvar" />
 					</b:column>

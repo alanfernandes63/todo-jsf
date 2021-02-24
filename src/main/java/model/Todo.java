@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+
+import com.sun.istack.NotNull;
 
 @Entity
 public class Todo {
@@ -18,19 +21,25 @@ public class Todo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	private String titulo;
 
+	@NotNull
+	@NotBlank
 	private String descricao;
 
 	@OneToOne
 	@JoinColumn(name = "responsavel_id")
+	@NotNull
 	private Pessoa responsavel;
 
 	@Enumerated(EnumType.STRING)
+	@NotNull
 	private Prioridade prioridade;
 
+	@NotNull
 	private Date deadline;
-	
+
 	private Boolean concluida = false;
 
 	public Todo() {

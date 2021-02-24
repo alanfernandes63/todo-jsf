@@ -13,7 +13,9 @@ public interface ITodoController {
 	public void deletar(Todo todo);
 
 	public List<Todo> listar();
-	
+
 	public List<Todo> listarTodosAFazer();
+
+	public List<Todo> filtrar(Todo todo);
 
 }
