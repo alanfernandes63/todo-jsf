@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"> 
+
+	<ui:composition>
+		<h:form>
+			<b:dataTable value="#{todoBean.todos}" var="todo">
+				<b:dataTableColumn value="#{todo.id}">
+					<f:facet name="header">
+						<h:outputText value="Número" />
+					</f:facet>
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{todo.titulo}">
+					<f:facet name="header">
+						<h:outputText value="Titulo/Descrição" />
+					</f:facet>
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{todo.responsavel.nome}">
+					<f:facet name="header">
+						<h:outputText value="Responsável" />
+					</f:facet>
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{todo.prioridade}">
+					<f:facet name="header">
+						<h:outputText value="Prioridade" />
+					</f:facet>
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<h:outputText value="#{todo.deadline}">
+	      				<f:convertDateTime pattern="dd-MM-yyyy" />
+	 				</h:outputText>
+					<f:facet name="header">
+						<h:outputText value="Deadline" />
+					</f:facet>
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<b:commandButton look="danger" action="#{todoBean.deletar(todo)}" value="Excluir" />
+					<b:commandButton look="success" action="#{todoBean.concluir(todo)}" value="Concluir" />
+					<f:facet name="header">
+						<h:outputText value="Ações" />
+					</f:facet>
+				</b:dataTableColumn>
+			</b:dataTable>
+		</h:form>
+	</ui:composition>
+</html>

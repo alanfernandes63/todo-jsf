@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+      
+	<ui:composition>
+      <b:tabView activeIndex="2">
+		  <b:tab title="Cadastrar">
+		  	<ui:insert name="cadastrar">
+		    	<ui:include src="/cadastro.xhtml" />
+		    </ui:insert>
+		  </b:tab>
+		  <b:tab onclick="#{todoBean.listar()}" title="Listar">
+		    <ui:insert name="listar">
+		    	<ui:include src="/listar.xhtml" />
+		    </ui:insert>
+		  </b:tab>
+	  </b:tabView>
+     </ui:composition> 
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"> 
+
+	<ui:composition>
+		<h:form id="form-todo">
+			<b:container fluid="true">
+				<b:row>
+					<b:column col-md="6">
+						<b:inputText value="#{todoBean.todo.titulo}" />
+						<b:inputText value="#{todoBean.todo.descricao}" />
+						<b:selectOneMenu converter="pessoaConverter" value="#{todoBean.todo.responsavel}">
+						<f:selectItems var="pessoa" value="#{todoBean.pessoas}" itemLabel="#{pessoa.nome}"/>
+						</b:selectOneMenu>
+						<b:selectOneMenu value="#{todoBean.todo.prioridade}">
+						<f:selectItems var="prioridade" value="#{todoBean.prioridades}" itemLabel="#{prioridade.label}"/>
+						</b:selectOneMenu>
+						<b:dateTimePicker  value="#{todoBean.todo.deadline}" format="DD-MM-YYYY"/>
+						<b:commandButton action="#{todoBean.salvar()}" look="primary" value="salvar" />
+					</b:column>
+				</b:row>
+			</b:container>
+		</h:form>
+	</ui:composition>
+</html>
