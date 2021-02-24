@@ -5,9 +5,18 @@
 <hibernate-configuration>
     <session-factory>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    	<!-- 
         <property name="hibernate.connection.password">1234</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/todo_db</property>
         <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
+		<property name="show_sql">true</property>
+		 -->
+		<property name="hibernate.connection.password">534e0d205e7f72b9ac8cba66e4b33f332b94670c30971a095a2de51546cc059e</property>
+        <property name="hibernate.connection.url">jdbc:postgres://nnvpzzeinzzutt:534e0d205e7f72b9ac8cba66e4b33f332b94670c30971a095a2de51546cc059e@ec2-3-95-85-91.compute-1.amazonaws.com:5432/d8q7tln9funh23</property>
+        <property name="hibernate.connection.username">nnvpzzeinzzutt</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>

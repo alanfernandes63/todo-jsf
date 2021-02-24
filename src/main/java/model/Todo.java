@@ -3,8 +3,6 @@ package model;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +20,7 @@ public class Todo {
 	private Long id;
 
 	@NotNull
+	@NotBlank
 	private String titulo;
 
 	@NotNull
@@ -33,9 +32,8 @@ public class Todo {
 	@NotNull
 	private Pessoa responsavel;
 
-	@Enumerated(EnumType.STRING)
 	@NotNull
-	private Prioridade prioridade;
+	private String prioridade;
 
 	@NotNull
 	private Date deadline;
@@ -70,11 +68,11 @@ public class Todo {
 		this.responsavel = responsavel;
 	}
 
-	public Prioridade getPrioridade() {
+	public String getPrioridade() {
 		return prioridade;
 	}
 
-	public void setPrioridade(Prioridade prioridade) {
+	public void setPrioridade(String prioridade) {
 		this.prioridade = prioridade;
 	}
 

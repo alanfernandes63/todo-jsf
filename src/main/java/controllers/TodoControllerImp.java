@@ -16,6 +16,7 @@ public class TodoControllerImp implements ITodoController {
 	}
 
 	public void salvar(Todo todo) {
+		validar(todo);
 		dao.salvarAtualizar(todo);
 
 	}
@@ -38,6 +39,30 @@ public class TodoControllerImp implements ITodoController {
 
 	public List<Todo> filtrar(Todo todo) {
 		return dao.filtrar(todo);
+	}
+
+	private void validar(Todo todo) {
+		if (todo.getTitulo() == null) {
+			throw new RuntimeException("o título não pode ser nulo");
+		}
+		if (todo.getTitulo().trim().equals("")) {
+			throw new RuntimeException("o titulo não pode estar em branco");
+		}
+		if (todo.getDescricao() == null) {
+			throw new RuntimeException("a descição não pode ser nulo");
+		}
+		if (todo.getDescricao().trim().equals("")) {
+			throw new RuntimeException("a descrição não pode estar em branco");
+		}
+		if (todo.getDeadline() == null) {
+			throw new RuntimeException("a deadline não pode ser nulo");
+		}
+		if (todo.getPrioridade() == null) {
+			throw new RuntimeException("a deadline não pode ser nulo");
+		}
+		if (todo.getResponsavel() == null) {
+			throw new RuntimeException("o responsável não pode ser nulo");
+		}
 	}
 
 }

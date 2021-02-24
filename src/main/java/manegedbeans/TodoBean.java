@@ -3,19 +3,20 @@ package manegedbeans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import controllers.PessoaControllerImp;
 import controllers.TodoControllerImp;
 import interfaces.IPessoaController;
 import interfaces.ITodoBean;
 import model.Pessoa;
-import model.Prioridade;
 import model.Todo;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class TodoBean implements ITodoBean {
 
 	private TodoControllerImp iTodoController;
@@ -39,10 +40,16 @@ public class TodoBean implements ITodoBean {
 	}
 
 	public void salvar() {
-		this.iTodoController.salvar(this.todo);
-		this.todo = new Todo();
-		this.todos = iTodoController.listarTodosAFazer();
 
+		try {
+			this.iTodoController.salvar(this.todo);
+			this.todo = new Todo();
+			this.todos = iTodoController.listarTodosAFazer();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("salvo com sucesso!"));
+		} catch (RuntimeException e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		}
 	}
 
 	public void editar() {
@@ -51,7 +58,8 @@ public class TodoBean implements ITodoBean {
 
 	public void deletar(Todo todo) {
 		this.iTodoController.deletar(todo);
-		this.filtrar();
+		todos = this.iTodoController.listarTodosAFazer();
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("deletado com sucesso!"));
 	}
 
 	public void listar() {
@@ -81,10 +89,6 @@ public class TodoBean implements ITodoBean {
 
 	public void setPessoas(List<Pessoa> pessoas) {
 		this.pessoas = pessoas;
-	}
-
-	public Prioridade[] getPrioridades() {
-		return Prioridade.values();
 	}
 
 	public List<Todo> getTodos() {
